@@ -1,13 +1,12 @@
-import tkinter as tk
+import requests
 
-window = tk.Tk()
-window.title("SCOS App Store")
-window.geometry("800x400")
-window.resizable(False, False)
-exit = tk.Button(text="Exit", command="exit")
-exit.grid(row=1, column=2)
+url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-list.ini"
+
+r = requests.get(url)
+
+print(r.content)
 
 if __name__ == "__main__":
-    window.mainloop()
+    print("hello")
 else:
     print("Sorry, you cannot run the store from another app.")
