@@ -1,4 +1,11 @@
+from tkinter import YES
+from urllib import request
 import requests
+import configparser
+
+global config
+
+config = configparser.ConfigParser()
 
 url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-list.ini"
 
@@ -6,7 +13,17 @@ r = requests.get(url)
 
 print(r.content)
 
-if __name__ == "__main__":
-    print("hello")
-else:
-    print("Sorry, you cannot run the store from another app.")
+config.read(r.content)
+
+print("SCOS Store v1.0")
+print("Commands:\n1. Install\n2. Remove\n3. Exit")
+while True:
+    command = input("> ")
+    print(command)
+    if (command == "1"):
+        req = input("> Install > App: ")
+        for x in (config["Apps"]["app-list"]):
+            if config["Apps"]["name-" + x] == req:
+                print("YES")
+    if (command == "3"):
+        exit()
