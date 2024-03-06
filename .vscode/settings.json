@@ -1,4 +1,11 @@
 {
     "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true
+    "python.analysis.autoImportCompletions": true,
+    "cSpell.enableFiletypes": [
+        "ini"
+    ],
+    "cSpell.language": "en,en-AU,en-CA,en-GB,it,en-US,it-IT",
+    "cSpell.words": [
+        "SCOS"
+    ]
 }
