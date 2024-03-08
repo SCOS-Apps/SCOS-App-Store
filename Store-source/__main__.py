@@ -1,7 +1,7 @@
-from tkinter import YES
-from urllib import request
+from uu import decode
 import requests
 import configparser
+import io
 
 global config
 
@@ -11,9 +11,10 @@ url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-lis
 
 r = requests.get(url)
 
-print(r.content)
+content = r.content.decode()
+buf = io.StringIO(content)
 
-config.read(r.content)
+config.read(content)
 
 print("SCOS Store v1.0")
 print("Commands:\n1. Install\n2. Remove\n3. Exit")
