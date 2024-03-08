@@ -12,9 +12,8 @@ url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-lis
 r = requests.get(url)
 
 content = r.content.decode()
-buf = io.StringIO(content)
 
-config.read(content)
+config.read_string(content)
 
 print("SCOS Store v1.0")
 print("Commands:\n1. Install\n2. Remove\n3. Exit")
