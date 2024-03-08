@@ -21,9 +21,10 @@ while True:
     command = input("> ")
     print(command)
     if (command == "1"):
-        req = input("> Install > App: ")
+        req = '"' + input("> Install > App: ") + '"'
         for x in (config["Apps"]["app-list"]):
             if config["Apps"]["name-" + x] == req:
                 print("YES")
+                print("Dir: " + config["Apps"]["dir-" + x])
     if (command == "3"):
         exit()
