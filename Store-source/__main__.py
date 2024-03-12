@@ -1,6 +1,5 @@
 import requests
 import configparser
-import io
 
 global config
 
@@ -25,5 +24,7 @@ while True:
             if config["Apps"]["name-" + x] == req:
                 print("YES")
                 print("Dir: " + config["Apps"]["dir-" + x])
+                file = requests.get("https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/App-source/" + config["Apps"]["dir-" + x] + "/__install__.py").content
+                exec(file.decode())
     if (command == "3"):
         exit()
