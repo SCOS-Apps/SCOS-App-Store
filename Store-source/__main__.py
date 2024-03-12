@@ -1,4 +1,3 @@
-from uu import decode
 import requests
 import configparser
 import io
