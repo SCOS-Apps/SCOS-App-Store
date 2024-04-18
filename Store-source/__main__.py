@@ -24,10 +24,10 @@ while True:
     print(command)
     if (command == "1"):
         req = input("> Install > App: ")
-        for x in config["Apps"]["app-list"]:
-            if config["Apps"]["name-" + x] == req:
+        for x in range(1, int(config["Apps"]["app-list"])):
+            if config["Apps"]["name-" + str(x)] == req:
                 print("YES")
-                print("Dir: " + config["Apps"]["dir-" + x])
-                exec(requests.get(url2 + "App-source/" + config["Apps"]["dir-" + x] + "/__install__.py").content.decode())
+                print("Dir: " + config["Apps"]["dir-" + str(x)])
+                exec(requests.get(url2 + config["App-Store"]["file-url"] + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode())
     if (command == "3"):
         exit()
