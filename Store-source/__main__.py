@@ -13,6 +13,8 @@ content = r.content.decode()
 
 config.read_string(content)
 
+print("This store is managed by: " + config["App-Store"]["store-url"] + ". If the GitHub repo isn't correct, please modify the file 'auth'.")
+
 print("SCOS Store v1.0")
 print("Commands:\n1. Install\n2. Remove\n3. Exit")
 while True:
