@@ -28,6 +28,6 @@ while True:
             if config["Apps"]["name-" + str(x)] == req:
                 print("YES")
                 print("Dir: " + config["Apps"]["dir-" + str(x)])
-                exec(requests.get(url2 + config["App-Store"]["file-url"] + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode())
+                exec(requests.get(url2 + "App-source/" + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode())
     if (command == "3"):
         exit()
