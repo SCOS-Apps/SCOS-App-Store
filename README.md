@@ -1,6 +1,6 @@
 
 # SCOS App Store For Python3
 
-## How to use
+Welcome to the SCOS App Store! With this tool, you can have a store for YOUR apps, made by YOU amd all the other users.
 
-To use the app store, first install Python3 using winget or the Microsoft Store, or the executable, then download the zip provided in the [releases.](https://github.com/SCOS-Apps/SCOS-App-Store)
+To request an app is added, please mail me at scos100alt@gmail.com, where I will analize the app and put it to show!
