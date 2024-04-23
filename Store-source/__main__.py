@@ -17,7 +17,11 @@ url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-lis
 
 url2 = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/"
 
-r = requests.get(url)
+try:
+    r = requests.get(url)
+except:
+    print("Connection error, check Wi-Fi settings.")
+    exit(1)
 
 content = r.content.decode()
 
@@ -37,6 +41,14 @@ while True:
                 #print("YES")
                 print("Dir: " + config["Apps"]["dir-" + str(x)])
                 #exec(requests.get(url2 + "App-source/" + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode())
-                try: os.mkdir(config["Apps"]["dir-" + str(x)]) except: print("Error 001: App has already been installed.")
+                try:
+                    os.mkdir(config["Apps"]["dir-" + str(x)])
+                except:
+                    print("Error 001: App has already been installed.")
+                try:
+                    for x in requests.get(url2 + "App-source/" + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode():
+                        open("__install__.py").write(x)
+                except:
+                    print("Error 002: Installation error. (Check connection or remaining space.)")
     if (command == "3"):
         exit()
