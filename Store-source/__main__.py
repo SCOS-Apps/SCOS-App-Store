@@ -45,10 +45,18 @@ while True:
                     os.mkdir(config["Apps"]["dir-" + str(x)])
                 except:
                     print("Error 001: App has already been installed.")
-                try:
-                    for x in requests.get(url2 + "App-source/" + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode():
-                        open("__install__.py").write(x)
-                except:
-                    print("Error 002: Installation error. (Check connection or remaining space.)")
+                else:
+                    try:
+                        for x in requests.get(url2 + "App-source/" + config["Apps"]["dir-" + str(x)] + "/__install__.py").content.decode():
+                            open("__install__.py").write(x)
+                    except:
+                        print("Error 002: Installation error. (Check connection or remaining space.)")
+    elif command == "2":
+        req = input("> Remove: ")
+        try:
+            print("Removing Files for app " + req + "...")
+            os.rmdir(req)
+        except:
+            print("Error 003: ")
     if (command == "3"):
         exit()
