@@ -4,6 +4,7 @@ import os
 
 global config
 
+print("Loading Directories...")
 if os.getcwd != os.path.expanduser("~") + "\\SCOS-Apps":
     try:
         os.chdir(os.path.expanduser("~") + "\\SCOS-Apps")
@@ -12,12 +13,15 @@ if os.getcwd != os.path.expanduser("~") + "\\SCOS-Apps":
         os.chdir(os.path.expanduser("~") + "\\SCOS-Apps")
 
 config = configparser.ConfigParser()
+fileRead = configparser.ConfigParser()
+fileRead.read("store.ini")
 
-url = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/store-list.ini"
+url = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/store-list.ini"
 
-url2 = "https://raw.githubusercontent.com/SCOS-Apps/SCOS-App-Store/main/"
+url2 = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/"
 
 try:
+    print("Loading Store Source...")
     r = requests.get(url)
 except:
     print("Connection error, check Wi-Fi settings.")
