@@ -15,8 +15,9 @@ if os.getcwd != os.path.expanduser("~") + "\\SCOS-Apps":
 config = configparser.ConfigParser()
 fileRead = configparser.ConfigParser()
 fileRead.read("store.ini")
+tmp = fileRead["Info"]["storeManager"]
 
-url = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/store-list.ini"
+url = "https://raw.githubusercontent.com/" + tmp + "/main/store-list.ini"
 
 url2 = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/"
 
@@ -34,7 +35,7 @@ config.read_string(content)
 print("This store is managed by: " + config["App-Store"]["store-url"] + ". If the GitHub repo isn't correct, please modify your source.")
 
 print("SCOS Store v1.0")
-print("Commands:\n1. Install\n2. Remove\n3. Exit")
+print("Commands:\n1. Install\n2. Remove\n3. Exit\nc. License")
 while True:
     command = input("> ")
     print(command)
@@ -62,5 +63,7 @@ while True:
             os.rmdir(req)
         except:
             print("Error 003: ")
+    elif command == "c":
+        print("SCOS App Store  Copyright (C) 2024  SCOS Apps\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions.")
     if (command == "3"):
         exit()
