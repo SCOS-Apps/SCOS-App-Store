@@ -9,7 +9,7 @@ global fileRead
 fileRead = configparser.ConfigParser()
 fileRead.read("store.ini")
 try:
-    url = "https://raw.githubusercontent.com/SCOS-Apps/" + fileRead["Info"]["storeManager"] + "/main/store-list.ini"
+    url = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/store-list.ini"
 
     url2 = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/"
 except KeyError:
