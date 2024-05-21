@@ -3,6 +3,18 @@ import configparser
 import os
 
 global config
+global tmp
+global fileRead
+
+fileRead = configparser.ConfigParser()
+fileRead.read("store.ini")
+try:
+    url = "https://raw.githubusercontent.com/SCOS-Apps/" + fileRead["Info"]["storeManager"] + "/main/store-list.ini"
+
+    url2 = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/"
+except KeyError:
+    print("Error 004: ConfigParser Error.")
+    exit(1)
 
 print("Loading Directories...")
 if os.getcwd != os.path.expanduser("~") + "\\SCOS-Apps":
@@ -13,13 +25,6 @@ if os.getcwd != os.path.expanduser("~") + "\\SCOS-Apps":
         os.chdir(os.path.expanduser("~") + "\\SCOS-Apps")
 
 config = configparser.ConfigParser()
-fileRead = configparser.ConfigParser()
-fileRead.read("store.ini")
-tmp = fileRead["Info"]["storeManager"]
-
-url = "https://raw.githubusercontent.com/" + tmp + "/main/store-list.ini"
-
-url2 = "https://raw.githubusercontent.com/" + fileRead["Info"]["storeManager"] + "/main/"
 
 try:
     print("Loading Store Source...")
@@ -32,7 +37,11 @@ content = r.content.decode()
 
 config.read_string(content)
 
-print("This store is managed by: " + config["App-Store"]["store-url"] + ". If the GitHub repo isn't correct, please modify your source.")
+try:
+    print("This store is managed by: " + config["App-Store"]["store-url"] + ". If the GitHub repo isn't correct, please modify your source.")
+except KeyError:
+    print("Error 004: ConfigParser Error.")
+    exit(1)
 
 print("SCOS Store v1.0")
 print("Commands:\n1. Install\n2. Remove\n3. Exit\nc. License")
@@ -62,7 +71,7 @@ while True:
             print("Removing Files for app " + req + "...")
             os.rmdir(req)
         except:
-            print("Error 003: ")
+            print("Error 003: App doesn't probably exist or isn't installed.")
     elif command == "c":
         print("SCOS App Store  Copyright (C) 2024  SCOS Apps\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions.")
     if (command == "3"):
